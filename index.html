@@ -9,24 +9,23 @@
         body {
             margin: 0;
             padding: 0;
-            width: 100vw;
-            height: 100vh; /* 固定で100%確保 */
+            /* iPhoneのブラウザの「本当の高さ」に合わせる設定 */
+            height: 100dvh; 
             display: flex;
             flex-direction: column;
-            justify-content: center; /* 垂直方向中央 */
-            align-items: center;     /* 水平方向中央 */
-            overflow: hidden;        /* はみ出しをカットしてスッキリさせる */
-    
-            /* 背景：動くグラデーション（康さんの設定を完全維持） */
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+
+            /* 背景：動くグラデーション（康さんの設定を維持） */
             background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
             background-size: 400% 400%;
             animation: gradientBG 10s ease infinite;
-    
+
             font-family: 'Arial Black', sans-serif;
             color: white;
             text-align: center;
         }
-
         @keyframes gradientBG {
             0% { background-position: 0% 50%; }
             50% { background-position: 100% 50%; }
