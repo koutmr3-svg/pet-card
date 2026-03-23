@@ -20,11 +20,11 @@
 
             /* 背景：動くグラデーション（康さんの設定を完全維持） */
            background: linear-gradient(-45deg, 
-                #3e2723, /* 1. 深い焦げ茶（ビターチョコ） */
-                #a1887f, /* 2. 温かみのあるグレージュ */
-                #d7ccc8, /* 3. 明るいミルクティー（ベージュ） */
-                #8d6e63, /* 4. ココアブラウン */
-                #bdbdbd  /* 5. シックなミディアムグレー */
+                #5d4037, /* 1. 深いモカブラウン（ラテまるくんの毛色の影） */
+                #a1887f, /* 2. 温かみのあるグレージュ（ラテまるくんの毛色のハイライト） */
+                #efebe9, /* 3. 明るいアイボリー（チェック柄のベース色） */
+                #d7ccc8, /* 4. ミルクティーベージュ */
+                #8d6e63  /* 5. ココアブラウン */
             );
             background-size: 300% 300%; /* アニメーションの移動距離を少し大きく(300%)して変化を強調 */
             animation: gradientBG 12s ease infinite; /* 速度を少し速め(12s)にして、変化を感じやすく調整 */
@@ -158,13 +158,11 @@
 
         @media screen and (max-width: 480px) {
             h1 {
-                font-size: 10vw !important;
-                white-space: nowrap;
-            }
-            /* スマホでカードが大きすぎないよう微調整 */
-            .card-container {
-                width: 220px;
-                height: 334px;
+                /* 10vw から 15vw くらいまで一気に大きくします */
+                font-size: 15vw !important; 
+                margin-bottom: 2vh;
+                /* 筆記体がはみ出さないように少し余裕を持たせる */
+                padding: 0 10px;
             }
         }
     </style>
