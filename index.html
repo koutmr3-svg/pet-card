@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <title>Lattemaru | Ultra 3D Portfolio</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
     <style>
         /* --- 1. 全体設定：iPhone Chromeのメニューバーを計算に入れた中央寄せ --- */
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -18,9 +19,15 @@
             overflow: hidden;
 
             /* 背景：動くグラデーション（康さんの設定を完全維持） */
-            background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
-            background-size: 400% 400%;
-            animation: gradientBG 10s ease infinite;
+           background: linear-gradient(-45deg, 
+                #3e2723, /* 1. 深い焦げ茶（ビターチョコ） */
+                #a1887f, /* 2. 温かみのあるグレージュ */
+                #d7ccc8, /* 3. 明るいミルクティー（ベージュ） */
+                #8d6e63, /* 4. ココアブラウン */
+                #bdbdbd  /* 5. シックなミディアムグレー */
+            );
+            background-size: 300% 300%; /* アニメーションの移動距離を少し大きく(300%)して変化を強調 */
+            animation: gradientBG 12s ease infinite; /* 速度を少し速め(12s)にして、変化を感じやすく調整 */
 
             font-family: 'Arial Black', sans-serif;
             color: white;
@@ -46,10 +53,15 @@
 
         /* --- 2. ネオンタイトル --- */
         h1 {
-            font-size: clamp(2rem, 8vh, 4rem);
-            margin-bottom: 3vh; /* 少し間隔を広げました */
-            text-transform: uppercase;
-            text-shadow: 0 0 10px #fff, 0 0 20px #ff00de, 0 0 30px #ff00de;
+            /* 読み込んだ筆記体フォントを適用 */
+            font-family: 'Dancing Script', cursive;
+    
+            font-size: clamp(3rem, 12vw, 5rem); /* 筆記体は少し大きめが格好いい！ */
+            margin-bottom: 3vh;
+            text-transform: capitalize; /* 最初の文字だけ大文字にする（Lattemaru） */
+    
+            /* ネオンの輝きを、ブラウン背景に合うゴールド系に調整 */
+            text-shadow: 0 0 10px #fff, 0 0 20px #d4af37, 0 0 30px #aa8805;
             animation: flicker 2s infinite;
         }
 
