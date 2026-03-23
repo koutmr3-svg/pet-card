@@ -139,25 +139,13 @@
             50% { transform: scale(1.05); }
             100% { transform: scale(1); }
         }
-        /* 文字が画面からはみ出さないようにする */
-        h1, h2, p {
-          max-width: 100%;
-          word-wrap: break-word; /* 長い文字も自動で改行する */
-        }
-
-        /* ボタンを画面幅に収める */
-        .button-container, .sns-buttons {
-          display: flex;
-          flex-wrap: wrap;       /* 収まりきらない時は自動で折り返す */
-          justify-content: center;
-          gap: 10px;
-          max-width: 90vw;       /* 画面幅の90%に収める */
-          margin: 0 auto;
-        }
-
-        .btn {
-          max-width: 100%;       /* ボタン単体も画面を超えない */
-          box-sizing: border-box; /* 枠線を含めたサイズ計算にする */
+        
+        /* スマホ画面のときだけ文字を小さくする設定 */
+        @media screen and (max-width: 480px) {
+          h1 {
+            font-size: 10vw !important; /* 画面幅の10%の大きさに自動調整 */
+            white-space: nowrap;       /* 勝手に改行されるのを防ぐ */
+          }
         }
     </style>
 </head>
