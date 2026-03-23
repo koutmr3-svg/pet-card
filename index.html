@@ -8,22 +8,23 @@
         /* --- 1. 全体設定：スクロール禁止・中央寄せ --- */
         body {
             margin: 0;
-            /* ↓ ここを min-height に変えるのがポイント！ */
-            min-height: 100vh; 
+            padding: 0;
+            width: 100vw;
+            height: 100vh; /* 固定で100%確保 */
             display: flex;
             flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            /* ↓ スマホで画面がはみ出た時にスクロールできるように auto にします */
-            overflow-y: auto;
-            overflow-x: hidden; 
-
+            justify-content: center; /* 垂直方向中央 */
+            align-items: center;     /* 水平方向中央 */
+            overflow: hidden;        /* はみ出しをカットしてスッキリさせる */
+    
             /* 背景：動くグラデーション（康さんの設定を完全維持） */
             background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
             background-size: 400% 400%;
             animation: gradientBG 10s ease infinite;
+    
             font-family: 'Arial Black', sans-serif;
             color: white;
+            text-align: center;
         }
 
         @keyframes gradientBG {
