@@ -158,11 +158,20 @@
 
         @media screen and (max-width: 480px) {
             h1 {
-                /* 10vw から 15vw くらいまで一気に大きくします */
-                font-size: 15vw !important; 
-                margin-bottom: 2vh;
-                /* 筆記体がはみ出さないように少し余裕を持たせる */
-                padding: 0 10px;
+                /* 10vw から 18vw まで一気に拡大！ */
+                font-size: 18vw !important; 
+                margin-bottom: 1vh; /* カードとの隙間を少し詰めて画面内の密度を上げます */
+                line-height: 1.2;
+                white-space: nowrap;
+                / * 文字のネオンを少し太くして、カメラ越しでもハッキリ見えるようにします */
+                text-shadow: 0 0 10px #fff, 0 0 20px #d4af37, 0 0 40px #aa8805;
+            }
+    
+            /* カードも少しだけ大きくして、余白を埋めます */
+            .card-container {
+                width: 260px;
+                height: 395px;
+                margin-bottom: 3vh;
             }
         }
     </style>
