@@ -99,11 +99,36 @@
             backface-visibility: hidden;
             -webkit-backface-visibility: hidden;
             border-radius: 20px;
-            border: 1px solid rgba(255, 255, 255, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.4);
             background: rgba(255, 255, 255, 0.1);
             backdrop-filter: blur(5px);
             box-shadow: 0 15px 35px rgba(0,0,0,0.5);
             overflow: hidden;
+        }
+
+        /* ★ここが重要！画像の上に「光のレイヤー」を重ねる魔法 */
+        .face::after {
+            content: "";
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            /* 鋭い白い光の筋を作るグラデーション */
+            background: linear-gradient(
+                120deg, 
+                rgba(255,255,255,0) 30%, 
+                rgba(255,255,255,0.7) 50%, 
+                rgba(255,255,255,0) 70%
+            );
+            transform: rotate(25deg);
+            /* 4秒ごとにキラリと光が走るアニメーション */
+            animation: sweep 4s infinite;
+        }
+
+        @keyframes sweep {
+    0% { transform: translateX(-100%) rotate(25deg); }
+    100% { transform: translateX(100%) rotate(25deg); }
         }
 
         .front { transform: rotateY(0deg); }
@@ -163,7 +188,7 @@
                 margin-bottom: 1vh; /* カードとの隙間を少し詰めて画面内の密度を上げます */
                 line-height: 1.2;
                 white-space: nowrap;
-                / * 文字のネオンを少し太くして、カメラ越しでもハッキリ見えるようにします */
+                /* 文字のネオンを少し太くして、カメラ越しでもハッキリ見えるようにします */
                 text-shadow: 0 0 10px #fff, 0 0 20px #d4af37, 0 0 40px #aa8805;
             }
     
