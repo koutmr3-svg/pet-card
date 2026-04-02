@@ -39,15 +39,13 @@
 
         @keyframes flicker { 0%, 100% { opacity: 1; } 50% { opacity: 0.8; } }
 
-        /* --- 3. 3Dカードの箱（中央寄せ強化） --- */
+        /* --- 3. 3Dカードの箱 --- */
         .card-container {
             width: 250px; height: 380px;
             perspective: 1200px; margin-bottom: 5vh;
             cursor: pointer;
-            /* 左右中央寄せを確実に */
             margin-left: auto; margin-right: auto;
             position: relative;
-            /* タップ時の青い枠（ハイライト）を消す（スマホ用） */
             -webkit-tap-highlight-color: transparent;
         }
 
@@ -57,7 +55,6 @@
             animation: spinCard 7s linear infinite;
         }
 
-        /* ★このクラスがついている間はアニメーションを一時停止 */
         .card.is-paused {
             animation-play-state: paused;
         }
@@ -67,7 +64,7 @@
             100% { transform: rotateY(360deg); }
         }
 
-        /* --- 4. カードの表裏 --- */
+        /* --- 4. カードの表裏（光を少し明るく調整） --- */
         .face {
             position: absolute; width: 100%; height: 100%;
             backface-visibility: hidden; -webkit-backface-visibility: hidden;
@@ -79,7 +76,8 @@
         .face::after {
             content: ""; position: absolute; top: -50%; left: -50%;
             width: 200%; height: 200%;
-            background: linear-gradient(120deg, rgba(255,255,255,0) 30%, rgba(255,255,255,0.7) 50%, rgba(255,255,255,0) 70%);
+            /* ★ここを 0.3 から 0.5 に変更して光を少し強調しました */
+            background: linear-gradient(120deg, rgba(255,255,255,0) 30%, rgba(255,255,255,0.5) 50%, rgba(255,255,255,0) 70%);
             transform: rotate(25deg); animation: sweep 4s infinite;
         }
 
@@ -92,17 +90,24 @@
         .back { transform: rotateY(180deg); }
         .face img { width: 100%; height: 100%; object-fit: cover; }
 
-        /* --- 5. ボタン設定 --- */
+        /* --- 5. ボタン設定（浮き沈み維持） --- */
         .btn-group { display: flex; gap: 15px; justify-content: center; width: 100%; }
         .btn-common {
             display: inline-flex; align-items: center; justify-content: center;
             width: 140px; height: 50px; border-radius: 50px; color: white;
             text-decoration: none; font-weight: bold; font-size: 0.9rem;
-            transition: 0.3s; animation: pulse 1.5s infinite;
+            transition: 0.3s;
+            animation: pulse 2s infinite ease-in-out; 
             box-shadow: 0 5px 15px rgba(0,0,0,0.3); white-space: nowrap;
         }
         .insta-btn { background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888); }
         .tiktok-btn { background: #000; border: 2px solid #ff0050; box-shadow: 2px 2px 0px #00f2ea; }
+
+        @keyframes pulse {
+            0% { transform: scale(1); box-shadow: 0 5px 15px rgba(0,0,0,0.3); }
+            50% { transform: scale(1.1); box-shadow: 0 10px 25px rgba(0,0,0,0.4); }
+            100% { transform: scale(1); box-shadow: 0 5px 15px rgba(0,0,0,0.3); }
+        }
 
         @media screen and (max-width: 480px) {
             h1 { font-size: 18vw !important; margin-bottom: 1vh; }
@@ -137,20 +142,12 @@
         const container = document.getElementById('cardContainer');
 
         function toggleAnimation(e) {
-            // ボタン（Instagram/TikTok）やその中身が押された時は無視
             if (e.target.closest('.btn-group')) return;
-
-            // デフォルトの動作（長押しメニューなど）を邪魔しないようにしつつ切り替え
             card.classList.toggle('is-paused');
         }
 
-        // PC用：クリック
         container.addEventListener('click', toggleAnimation);
-
-        // スマホ用：指を離した瞬間に確実に実行させる
-        // touchstart（触れた瞬間）だと誤動作しやすいため、touchend（離した瞬間）を使います
         container.addEventListener('touchend', function(e) {
-            // クリックイベントとの二重発火を防ぐ
             e.preventDefault(); 
             toggleAnimation(e);
         }, { passive: false });
