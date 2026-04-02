@@ -125,11 +125,18 @@
         const card = document.getElementById('mainCard');
         const container = document.getElementById('cardContainer');
 
-        container.addEventListener('click', function() {
-            // pausedクラスがなければ追加し、あれば消す（トグル操作）
+        // PCのクリックとスマホのタップ、両方に対応させる関数
+        function togglePause(e) {
+            // リンクボタンなどを押した時に動作が干渉しないように
+            if (e.target.tagName === 'A') return;
+        
             card.classList.toggle('paused');
-        });
-    </script>
+        }
 
+        // スマホの指が触れた瞬間
+        container.addEventListener('touchstart', togglePause, {passive: true});
+        // PCのクリック
+        container.addEventListener('click', togglePause);
+    </script>
 </body>
 </html>
