@@ -31,11 +31,20 @@
         }
         @keyframes flicker { 0%, 100% { opacity: 1; } 50% { opacity: 0.8; } }
 
-        /* --- 3Dカードの箱 --- */
+        /* --- 3. 3Dカードの箱（スマホでの寄り防止） --- */
         .card-container {
-            width: 250px; height: 380px;
-            perspective: 1200px; margin-bottom: 5vh;
-            cursor: pointer; /* 重ねた時に指マークが出るように */
+            width: 250px;
+            height: 380px;
+            perspective: 1200px;
+            margin-bottom: 5vh;
+            cursor: pointer;
+    
+            /* ★ここを追加：左右の余白を自動（auto）にして、確実に真ん中へ */
+            margin-left: auto;
+            margin-right: auto;
+    
+            /* ★ここを追加：回転時のはみ出しを防ぐため、親要素の幅を制限 */
+            max-width: 90vw; 
         }
 
         .card {
