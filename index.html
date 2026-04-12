@@ -144,16 +144,19 @@
         const container = document.getElementById('cardContainer');
 
         function toggleAnimation(e) {
-        // <a>タグ、または<a>タグの中身を触った場合は何もしない
-        if (e.target.closest('a')) return; 
-        card.classList.toggle('is-paused');
+            // ボタンエリア（<a>タグ）を触った時は、カードの停止処理を完全に無視する
+            if (e.target.closest('.btn-group') || e.target.closest('a')) return;
+            card.classList.toggle('is-paused');
         }
 
         container.addEventListener('click', toggleAnimation);
+    
+        // ↓ここを修正：preventDefault() を削除し、ボタン以外でのみ動作するように
         container.addEventListener('touchend', function(e) {
-            e.preventDefault(); 
-            toggleAnimation(e);
-        }, { passive: false });
+            if (!e.target.closest('a')) {
+                toggleAnimation(e);
+            }
+        });
     </script>
 
 </body>
