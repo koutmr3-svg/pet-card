@@ -102,7 +102,8 @@
             box-shadow: 0 5px 15px rgba(0,0,0,0.3); white-space: nowrap;
         }
         .insta-btn { background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888); }
-        .tiktok-btn { background: #000; border: 1.5px solid #ffffff; box-shadow: 2px 2px 0px #00f2ea; }
+        .tiktok-btn { background: #000; border: 1.5px solid #ffffff; box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);/* 追記：タップの反応を確実にする */position: relative;z-index: 100;
+        }
 
         @keyframes pulse {
             0% { transform: scale(1); box-shadow: 0 5px 15px rgba(0,0,0,0.3); }
@@ -143,8 +144,9 @@
         const container = document.getElementById('cardContainer');
 
         function toggleAnimation(e) {
-            if (e.target.closest('.btn-group')) return;
-            card.classList.toggle('is-paused');
+        // <a>タグ、または<a>タグの中身を触った場合は何もしない
+        if (e.target.closest('a')) return; 
+        card.classList.toggle('is-paused');
         }
 
         container.addEventListener('click', toggleAnimation);
